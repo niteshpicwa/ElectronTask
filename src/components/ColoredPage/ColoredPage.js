@@ -7,6 +7,7 @@ function ColoredPage(props) {
         <div>
             <h1>Colored page</h1>
             <h1>{location.state}</h1>
+            <canvas id="myCanvas" width="200" height="200" style={{ 'backgroundColor': `${location.state}` }} />
         </div>
     );
 }

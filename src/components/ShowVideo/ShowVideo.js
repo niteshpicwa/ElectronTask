@@ -14,9 +14,9 @@ function ShowVideo(props) {
     return (
         <div>
             <h1>Shoe Video</h1>
-            {/* <button onClick={openNewWindow}>Open new Window</button> */}
             {videoPath ? <video width="400" controls>
-                <source src={`file://${videoPath}`} type="video/mp4" />
+                <source src={`data:image/jpg;base64,${videoPath}`} type="video/mp4" />
+                {/* <source src={`file://${videoPath}`} type="video/mp4" /> */}
                 Your browser does not support HTML video.
             </video> : <p>Please select Video</p>}
         </div>

@@ -1,5 +1,7 @@
+const fs = require('fs');
 const path = require("path");
-
+const os = require('os');
+const {Blob} = require('buffer')
 const { app, BrowserWindow, ipcMain, dialog } = require("electron");
 const isDev = require("electron-is-dev");
 
@@ -93,22 +95,33 @@ ipcMain.on("openChildWindow", (event, arg) => {
   // console.log("dvjdbvhjbjhb", arg);
   // console.log("kjdnvsdjkvnjn",BrowserWindow.getFocusedWindow());
   // console.log("kjdnvsdjkvnjn",BrowserWindow.getAllWindows()[0]);
+  
+  // const readableStream = fs.createReadStream(desktopDir+'/big_buck_bunny_720p_1mb.mp4')
+  // readableStream.on('data', function (chunk) {
+  //   console.log("vjndfjvndjnv", chunk);
+  // });
+
+  
   createWindow(arg)
 });
 
 
 ipcMain.on("getFileName", (event, data) => {
-  dialog.showOpenDialog({
-    properties: ['openFile',
-      //  'multiSelections'
-    ],
-    filters: [
-      { name: 'Movies', extensions: ['mkv', 'avi', 'mp4'] },
-    ]
-  })
-    .then(res => {
-      event.reply("getFileNameReply", res.filePaths[0]);
-    })
+  // dialog.showOpenDialog({
+  //   properties: ['openFile',
+  //     //  'multiSelections'
+  //   ],
+  //   filters: [
+  //     { name: 'Movies', extensions: ['mkv', 'avi', 'mp4'] },
+  //   ]
+  // })
+  //   .then(res => {
+  //     event.reply("getFileNameReply", res.filePaths[0]);
+  //   })
+
+  const desktopDir = path.join(os.homedir(), "Desktop");
+  const file = fs.readFileSync(desktopDir + '/big_buck_bunny_720p_1mb.mp4').toString('base64');
+  event.reply("getFileNameReply", file);
 })
 
 // Quit when all windows are closed, except on macOS. There, it's common

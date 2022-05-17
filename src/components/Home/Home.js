@@ -5,7 +5,6 @@ const { ipcRenderer } = window.require("electron");
 function Home(props) {
   const history = useHistory()
   const openNewWindow = () => {
-    window.close()
     ipcRenderer.send('openChildWindow', 'rgb')
     return
   }
