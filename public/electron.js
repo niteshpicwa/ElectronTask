@@ -38,9 +38,9 @@ function createWindow(arg) {
   );
 
   // Open the DevTools.
-  // if (isDev) {
-  //   win.webContents.openDevTools({ mode: "detach" });
-  // }
+  if (isDev) {
+    win.webContents.openDevTools({ mode: "detach" });
+  }
 }
 
 // function createChildWindow(arg) {
